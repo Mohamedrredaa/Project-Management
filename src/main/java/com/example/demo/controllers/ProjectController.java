@@ -51,19 +51,12 @@ public class ProjectController {
 	
 	
 	@PostMapping("/save")
-	public String saveNewProject(@ModelAttribute("project") Project projectSubmitted , @RequestParam List<Long> employees) {
+	public String saveNewProject(@ModelAttribute("project") Project projectSubmitted ) {
 		
 		System.out.println("Reached here ");
 		System.out.println(projectSubmitted.toString());
 		projectRepo.save(projectSubmitted);
-		
-		Iterable<Employee> employeeList=empRepo.findAllById(employees);
-		
-		for(Employee emp:employeeList) {
-			emp.setProject(projectSubmitted);
-			empRepo.save(emp);
-		}
-		
+	
 		return "redirect:/Projects/";   //This is to prevent duplicate submissions 
 	}
 }

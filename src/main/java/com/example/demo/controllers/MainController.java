@@ -35,7 +35,7 @@ public class MainController {
 
 			model.addAttribute("employees" , employees);
 			
-			return "main-page.html";
+			return "index.html";
 			
 		}
 }
