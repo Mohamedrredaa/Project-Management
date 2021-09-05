@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+
+</head>
+
+<body>
+<body>
+	<nav th:replace="layout"></nav>
+
+	<div class="container">
+		<form action="/Projects/save" th:object="${project}" method="POST">
+			<div class="form-group">
+				<input type="text" placeholder="Project Name"
+					th:field="*{projectName}">
+			</div>
+			<div class="form-group">
+
+				<select th:field="${project.stage}">
+
+					<option th:value="NOTSTARTED">Not Started</option>
+					<option th:value="INPROGRESS">In Progress</option>
+					<option th:value="COMPLETED">Completed</option>
+				</select>
+			</div>
+
+			<div class="form-group">
+
+			<textarea type="text" placeholder="Enter Project Description"
+				th:field="${project.description}"></textarea>
+			</div>
+			<div class="form-group">
+			
+			<select  th:field=${project.employees} multiple="multiple">
+				<option th:each="employee :${employeeList}"
+					th:value=${employee.employeeId}
+					th:text=${employee.firstName}>
+				</option>
+			</select>
+			
+			
+			<button type="submit">Create Project</button>
+						</div>
+			
+	</div>
+	</form>
+	</div>
+
+</body>
+
+</html>
