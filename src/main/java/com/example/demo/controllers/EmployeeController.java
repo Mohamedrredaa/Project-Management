@@ -29,10 +29,7 @@ public class EmployeeController {
 
 		List<Employee> employees =  empRepo.findAll();
 		
-		for(Employee emp:employees) {
-			System.out.println(emp.toString());
-
-		}
+		
 		model.addAttribute("employees" , employees);
 		return "employees.html";
 		
